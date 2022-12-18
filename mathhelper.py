@@ -10,10 +10,13 @@ def is_prime(number):
     if number > 1:
         if number == 2:
             return True
-        for i in range(2, math.floor(math.sqrt(number)+1)):
+        if number >2 and number % 2 == 0:
+            return False
+        max_divisor = math.floor(math.sqrt(number))
+        for i in range(3, max_divisor+1, 2):
             if (number % i) == 0:
                 return False
-            return True
+        return True
     return False
 
 
@@ -29,3 +32,28 @@ def calculate_change(cost, money_paid):
         change += change_amount // change_type
         change_amount -= change[i] * change_type
     return change
+
+def list_primes(max_value):
+    """Returns a list of prime number upto the max_value"""
+    if isinstance(max_value, bool) or not isinstance(max_value, int):
+        raise TypeError("The input to this method must be a int")
+    number = 2
+    prime_list = []
+    while number <= max_value:
+        if is_prime(number):
+            prime_list.append(number)
+        number += 1
+    return prime_list
+
+def count_primes(min_value, max_value):
+    """Returns an int of the number of primes between min_value and max_value"""
+    if isinstance(max_value, bool) or not isinstance(max_value, int):
+        raise TypeError("The input to this method must be a int")
+    if isinstance(min_value, bool) or not isinstance(min_value, int):
+        raise TypeError("The input to this method must be a int")
+    guess = 2
+    prime_count = 0
+    for guess in range(min_value, max_value):
+        if is_prime(guess):
+            prime_count += 1
+    return prime_count
