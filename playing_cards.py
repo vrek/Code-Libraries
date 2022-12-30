@@ -5,7 +5,7 @@ class PlayingCard(object):
     inputs are suit and value, all lower case"""
     def __init__(self, suit, face_value):
         suits = ('hearts', 'diamonds', 'spades', 'clubs')
-        face_values = ('one','two','three','four','five','six','seven','eight','nine','ten','jack','queen', 'king', 'ace')
+        face_values = ('two','three','four','five','six','seven','eight','nine','ten','jack','queen', 'king', 'ace')
         if suit in suits:
             self.suit = suit
         else:
@@ -15,12 +15,12 @@ class PlayingCard(object):
         else:
             raise TypeError
     def show(self):
-        print(f"{self.face_values} of {self.suit}")
+        print(f"{self.face_value} of {self.suit}")
 
 class Deck:
-    """Class """
+    """Class to hold and store a deck of cards"""
     suits = ('hearts', 'diamonds', 'spades', 'clubs')
-    face_values = ('one','two','three','four','five','six','seven','eight','nine','ten','jack','queen', 'king', 'ace')
+    face_values = ('two','three','four','five','six','seven','eight','nine','ten','jack','queen', 'king', 'ace')
     def __init__(self):
         self.cards = []
         self.build()
@@ -39,11 +39,16 @@ class Deck:
             c.show()
 
 class Player:
+    """Class to hold an instance of a player"""
     def __init__(self):
         self.hand = []
+        self.hand_value = 0
+        self.wins = 0
     def draw(self, deck):
         self.hand.append(deck.drawCard())
         return self
     def showHand(self):
         for card in self.hand:
             card.show()
+    def foldHand(self):
+        self.hand.clear()
