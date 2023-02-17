@@ -54,32 +54,16 @@ for dealertrial in range(deal_hold,22):
         house_win_percent[dealertrial-4].append([])
         dealer.wins = 0
         alice.wins = 0
-        for n in range(0, 101):
+        for n in range(0, 1000):
             winner = play(dealer, alice, play_hold, deal_hold)
             if winner is not None:
                 winner.wins +=1
             dealer.foldHand()
             alice.foldHand()
-        house_win_percent[dealertrial-4][playertrial-4]=(dealer.wins/alice.wins+dealer.wins)
+        house_win_percent[dealertrial-4][playertrial-4]=(dealer.wins/(alice.wins+dealer.wins))
         play_hold += 1
     deal_hold +=1
 df = pd.DataFrame.from_records(house_win_percent)
 
-#(['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'],
-#     columns = ['4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21'])
 print(df)
 
-#trial_sum = 0
-#highest_percent = 0
-#highest_value = 0
-#
-#for play_hold_val in range(len(trialpercent)):
-#    print(f'The player won {trialpercent[play_hold_val]:.2%} when the player held at {play_hold_val+4}')
-#    if trialpercent[play_hold_val] > highest_percent:
-#        highest_percent = trialpercent[play_hold_val]
-#        highest_value = play_hold_val + 4
-#    trial_sum += trialpercent[play_hold_val]
-#averagepercent = trial_sum / len(trialpercent)
-#print(f'The average percentage was {averagepercent:.2%}')
-#print(f'The highest percentage was {highest_percent:.2%} when player held at {highest_value}')
-#print(f'The difference in win percentages was {max(trialpercent) - min(trialpercent):.2%}')
