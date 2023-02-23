@@ -60,10 +60,9 @@ for dealertrial in range(deal_hold,22):
                 winner.wins +=1
             dealer.foldHand()
             alice.foldHand()
-        house_win_percent[dealertrial-4][playertrial-4]=(dealer.wins/(alice.wins+dealer.wins))
+        house_win_percent[dealertrial-4][playertrial-4]=(dealer.wins/(alice.wins+dealer.wins))*100
         play_hold += 1
     deal_hold +=1
 df = pd.DataFrame.from_records(house_win_percent)
 
 print(df)
-
